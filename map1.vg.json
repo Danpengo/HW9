@@ -1,0 +1,42 @@
+{
+ "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+ "width": 800,
+ "height": 600,
+ "title": "Earthquakes of magnitude 7 or higher",
+ "projection": {"type": "equalEarth"},
+ "layer": [
+ {
+ "data": {
+ "url":
+"https://raw.githubusercontent.com/Danpengo/HW9/main/110m.topojson"
+,
+ "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+ },
+ "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "lighttealblue"}
+ },
+ {
+ "data": {
+ "url": "https://raw.githubusercontent.com/Danpengo/HW9/main/Earthquakes.csv"
+ },
+ 
+ "mark": {"type": "circle", "tooltip": {"content": "data"}},
+ 
+ "encoding": {
+  "tooltip": [
+        {"field": "Region", "type": "nominal"},
+        {"field": "Dis Mag Value", "type": "quantitative"},
+        {"field": "Disaster Subtype", "type": "nominal"},
+        {"field": "Year", "type": "quantitative"},
+        {"field": "Start Month", "type": "quantitative"},
+        {"field": "Start Day", "type": "quantitative"}
+        ],
+ "longitude": {"field": "Longitude", "type": "quantitative"},
+ "latitude": {"field": "Latitude", "type": "quantitative"},
+ "size": {
+ "field": "Dis Mag Value", "type": "quantitative", "scale": {"domain": [7, 10]}
+ },
+ "color": {"field": "Disaster Subtype", "type": "nominal"}
+ }
+ }
+ ]
+}
